@@ -27,14 +27,10 @@ documents or plain text, add them to `WANTED_TYPES` in the script
    pip install -r requirements.txt
    ```
 
-3. Create your own config file (kept private, git-ignored):
-
-   ```bash
-   cp config.example.py config.py
-   ```
-
-   Then open `config.py` and fill in your `API_ID`, `API_HASH`, and a
+3. Then open `config.py` and fill in your `API_ID`, `API_HASH`, and a
    `SESSION_NAME` (any name — it becomes your local session file).
+
+   This file should only live in your machine, do not post it anywhere.
 
 4. Run it:
 
