@@ -1,2 +1,53 @@
-# watch-and-send-forCHD
-This script uses Telethon to log in to your Telegram as a user bot and waits for videos to be sent from particular chats. My intent is to use it with Akhror's Cinemagic HD bot. Once the bot sends you the movie, the userbot automatically sends it to your Saved Messages.
+# watch-and-send
+
+A Telegram watcher that listens to one or more chats or bots and
+automatically forwards the content you care about to your Saved Messages.
+
+## What it does
+
+- Watches any chats/bots you name (`@username`, chat id, or `-100...` id)
+- Forwards matching messages to your Saved Messages
+- Skips messages that have "no-forward" protection enabled
+- Handles Telegram flood-wait limits automatically and retries
+- Prints a heartbeat line so you can see it's still alive
+- Asks what to watch every run — no config to edit for the targets
+
+By default it saves **videos only**. To also keep photos, audio,
+documents or plain text, add them to `WANTED_TYPES` in the script
+(see also `MIN_SIZE_MB` to skip small files).
+
+## Setup
+
+1. Get an **API id** and **API hash** from https://my.telegram.org
+   (API development tools → create an app).
+
+2. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Create your own config file (kept private, git-ignored):
+
+   ```bash
+   cp config.example.py config.py
+   ```
+
+   Then open `config.py` and fill in your `API_ID`, `API_HASH`, and a
+   `SESSION_NAME` (any name — it becomes your local session file).
+
+4. Run it:
+
+   ```bash
+   python watch_and_save.py
+   ```
+
+   On the first run Telegram will ask for your phone number and login
+   code. After that, type one or more `@usernames` or ids of the chats
+   to watch (space or comma separated). Press `Ctrl+C` to stop.
+
+## Notes
+
+- Your login session is stored in a local `*.session` file. Keep it
+  private — it's already covered by `.gitignore` so it never gets pushed.
+- Getting flood-waited? Increase `FLOOD_WAIT_SLEEP` in the script.
