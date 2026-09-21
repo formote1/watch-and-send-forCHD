@@ -1,0 +1,10 @@
+# Secrets — never commit these
+*.session
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Runtime state
+forwarded_ids.json
